@@ -51,6 +51,35 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(0, self.calc.multiply(-1, 0))
         self.assertEqual(-2, self.calc.multiply(-1, 2))
 
+    #Se crean pruebas para la resta
+    def test_substract_method_returns_correct_result(self):
+        self.assertEqual(0, self.calc.substract(2, 2))
+        self.assertEqual(1, self.calc.substract(1, 0))
+        self.assertEqual(-1, self.calc.substract(-1, 0))
+        self.assertEqual(-3, self.calc.substract(-1, 2))
+
+    #Se crean pruebas para la potenciación
+    def test_power_method_returns_correct_result(self):
+        self.assertEqual(4, self.calc.power(2, 2))
+        self.assertEqual(1, self.calc.power(1, 0))
+        self.assertEqual(1, self.calc.power(-1, 0))
+        self.assertEqual(1, self.calc.power(-1, 2))        
+
+    #Se crean pruebas para la raíz cuadrada
+    def test_sqrt_method_returns_correct_result(self):
+        self.assertEqual(2, self.calc.sqrt(4))
+        self.assertEqual(4, self.calc.sqrt(16))
+        self.assertEqual(0, self.calc.sqrt(0))
+
+    def test_sqrt_method_fails_with_negative_numbers(self):     
+        self.assertRaises(TypeError, self.calc.sqrt, -1)
+        self.assertRaises(TypeError, self.calc.sqrt, -25)
+
+
+        
+
+    
+
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()
