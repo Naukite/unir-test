@@ -34,10 +34,14 @@ class Calculator:
 
     def sqrt(self, x):
         self.check_type(x)
+        if x < 0:
+            raise TypeError("The square root of a negative number is undefined")
         return x ** 0.5
 
     def log10(self, x):
         self.check_type(x)
+        if x <= 0:
+            raise TypeError("Logarithm of zero or negative number is undefined")        
         return math.log10(x)
     
     def check_type(self, x):
