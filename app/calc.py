@@ -1,9 +1,9 @@
 import app
+import math
 
 
 class InvalidPermissions(Exception):
     pass
-
 
 class Calculator:
     def add(self, x, y):
@@ -31,6 +31,18 @@ class Calculator:
     def power(self, x, y):
         self.check_types(x, y)
         return x ** y
+
+    def sqrt(self, x):
+        self.check_type(x)
+        return x ** 0.5
+
+    def log10(self, x):
+        self.check_type(x)
+        return math.log10(x)
+    
+    def check_type(self, x):
+        if not isinstance(x, (int, float)):
+            raise TypeError("Parameter must be number")    
 
     def check_types(self, x, y):
         if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
