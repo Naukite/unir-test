@@ -75,6 +75,21 @@ class TestCalculate(unittest.TestCase):
         self.assertRaises(TypeError, self.calc.sqrt, -1)
         self.assertRaises(TypeError, self.calc.sqrt, -25)
 
+    def test_sqrt_method_fails_with_nan_parameter(self):
+        self.assertRaises(TypeError, self.calc.sqrt, "seriously")                     
+        self.assertRaises(TypeError, self.calc.sqrt, object())                     
+
+    #Se crean pruebas para el logaritmo en base 10
+    def test_log10_method_returns_correct_result(self):
+        self.assertEqual(1, self.calc.log10(10))
+        self.assertEqual(2, self.calc.log10(100))
+        self.assertEqual(3, self.calc.log10(1000))        
+
+    def test_log10_method_fails_with_zero_or_negative_numbers(self):     
+        self.assertRaises(TypeError, self.calc.log10, 0)
+        self.assertRaises(TypeError, self.calc.log10, -1)
+        self.assertRaises(TypeError, self.calc.log10, -1000)
+
 
         
 
