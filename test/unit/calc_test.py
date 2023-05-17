@@ -3,10 +3,14 @@ from unittest.mock import patch
 import pytest
 
 from app.calc import Calculator
+from app.calc import InvalidPermissions
 
 
 def mocked_validation(*args, **kwargs):
     return True
+
+def not_mocked_validation(*args, **kwargs):
+    return False    
 
 
 @pytest.mark.unit
@@ -50,6 +54,11 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(0, self.calc.multiply(1, 0))
         self.assertEqual(0, self.calc.multiply(-1, 0))
         self.assertEqual(-2, self.calc.multiply(-1, 2))
+
+    #Se implementa prueba para comprobar los permisos moking validate_permissions
+    @patch('app.util.validate_permissions', side_effect=not_mocked_validation, create=True)
+    def test_multiply_not_permissions(self, _validate_permissions):    
+        self.assertRaises(InvalidPermissions, self.calc.multiply, 2, 2)
 
     #Se crean pruebas para la resta
     def test_substract_method_returns_correct_result(self):
