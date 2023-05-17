@@ -22,3 +22,14 @@ class TestUtil(unittest.TestCase):
         self.assertRaises(TypeError, util.convert_to_number, "s")
         self.assertRaises(TypeError, util.convert_to_number, None)
         self.assertRaises(TypeError, util.convert_to_number, object())
+        
+    #se implementa pruebas para util.InvalidConvertToNumber
+    def test_invalid_convert_to_number(self):        
+        self.assertEqual(4.5, util.InvalidConvertToNumber("4.5"))
+        self.assertEqual(4, util.InvalidConvertToNumber("4"))
+        self.assertRaises(TypeError, util.InvalidConvertToNumber, "carpeta")
+        
+    #se implementa pruebas para util.validate_permissions
+    def test_validate_permissions(self):        
+        self.assertEqual(True, util.validate_permissions("3 * 2", "user1"))
+        self.assertEqual(False, util.validate_permissions("3 * 2", "user2"))
