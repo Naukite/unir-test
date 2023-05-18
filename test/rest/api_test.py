@@ -72,5 +72,35 @@ class TestApi(unittest.TestCase):
         except urllib.error.HTTPError as ex:
             self.assertEqual(ex.code, 400)     
         return False
+    
+    #se añade prueba para comprobar que se devuelve status code 400 al hacer raíz cuadrada de número negativo
+    def test_api_sqrtnegative(self):
+        url = f"{BASE_URL}/calc/sqrt/-1"
+        response = {}
+        try: 
+            response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        except urllib.error.HTTPError as ex:
+            self.assertEqual(ex.code, 400)     
+        return False
+    
+    #se añade prueba para comprobar que se devuelve status code 400 al hacer log10 de cero 
+    def test_api_log10zero(self):
+        url = f"{BASE_URL}/calc/log10/0"
+        response = {}
+        try: 
+            response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        except urllib.error.HTTPError as ex:
+            self.assertEqual(ex.code, 400)     
+        return False    
+    
+    #se añade prueba para comprobar que se devuelve status code 400 al hacer log10 de un número negativo 
+    def test_api_log10negative(self):
+        url = f"{BASE_URL}/calc/log10/-1"
+        response = {}
+        try: 
+            response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        except urllib.error.HTTPError as ex:
+            self.assertEqual(ex.code, 400)     
+        return False        
         
                                         
