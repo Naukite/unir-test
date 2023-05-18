@@ -2,6 +2,7 @@ import http.client
 import os
 import unittest
 from urllib.request import urlopen
+import urllib 
 
 import pytest
 
@@ -60,4 +61,16 @@ class TestApi(unittest.TestCase):
         response = urlopen(url, timeout=DEFAULT_TIMEOUT)
         self.assertEqual(
             response.status, http.client.OK, f"Error en la petición API a {url}"
-        )                                        
+        )                                   
+        
+    #se añade prueba para comprobar que se devuelve status code 400 al dividir por cero
+    def test_api_dividebyzero(self):
+        url = f"{BASE_URL}/calc/divide/10/0"
+        response = {}
+        try: 
+            response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        except urllib.error.HTTPError as ex:
+            self.assertEqual(ex.code, 400)     
+        return False
+        
+                                        
